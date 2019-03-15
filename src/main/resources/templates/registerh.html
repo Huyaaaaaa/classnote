@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>注册</title>
+</head>
+<body>
+    <div>
+    <!--/*@thymesVar id="account" type="com.huyaaaaaa.classnote.entity.AccountEntity"*/-->
+    <form action="#" th:action="@{/register}" th:object="${account}" method="post">
+        <input type="text" th:field="${account.accountAcc}" />
+        <input type="text" th:field="${account.accountPwd}" />
+        <input type="text" th:field="${account.accountEmail}" />
+        <input type="submit" />
+    </form></div>
+</body>
+</html>
