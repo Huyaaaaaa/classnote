@@ -32,7 +32,7 @@ public class AccountController {
 //                                  @RequestParam(value = "acc")String acc,
 //                                  @RequestParam(value = "pwd")String pwd,
 //                                  @RequestParam(value = "email")String email,
-                                  @ModelAttribute("account")AccountEntity accountEntity,
+                                  @ModelAttribute(value = "accountEntity")AccountEntity accountEntity,
                                   HttpServletRequest request){
 //        AccountEntity a = new AccountEntity();
 //        a.setAccountAcc(acc);

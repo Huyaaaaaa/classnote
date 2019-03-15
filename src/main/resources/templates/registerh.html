@@ -6,12 +6,14 @@
 </head>
 <body>
     <div>
-    <!--/*@thymesVar id="account" type="com.huyaaaaaa.classnote.entity.AccountEntity"*/-->
-    <form action="#" th:action="@{/register}" th:object="${account}" method="post">
-        <input type="text" th:field="${account.accountAcc}" />
-        <input type="text" th:field="${account.accountPwd}" />
-        <input type="text" th:field="${account.accountEmail}" />
+        <!--/*@thymesVar id="accountEntity" type="com.huyaaaaaa.classnote.entity.AccountEntity"*/-->
+    <form action="#" th:action="@{/register}" th:object="${accountEntity}" method="post">
+        <input type="text" value="" th:field="*{accountAcc}" />
+        <input type="text" value="" th:field="*{accountPwd}" />
+        <input type="text" value="" th:field="*{accountEmail}" />
         <input type="submit" />
-    </form></div>
+    </form>
+    </div>
+    <h1>123123123</h1>
 </body>
 </html>
