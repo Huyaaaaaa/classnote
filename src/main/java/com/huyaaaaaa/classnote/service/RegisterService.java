@@ -24,10 +24,11 @@ public class RegisterService {
     public AccountEntity registerAccount(AccountEntity a, HttpServletRequest request) {
 
         //获取真实ip地址塞入account信息
+
+        System.out.println("header信息为");
         String ip = GetIPUtil.GetIp(request);
+        System.out.println("现在的ip为"+ip);
         a.setAccountLastIp(ip);
-        System.out.println(ip);
-        System.out.println("$$$$$$$$");
         UserEntity userEntity = new UserEntity();
         UserEntity save = userJPA.save(userEntity);
         System.out.println(save.getUserId());

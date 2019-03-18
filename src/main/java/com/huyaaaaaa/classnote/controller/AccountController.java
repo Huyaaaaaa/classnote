@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,23 +24,18 @@ public class AccountController {
     LoginService loginService;
 
     @RequestMapping(path = "/test",method = RequestMethod.GET)
-    public String test(){
+    public String test(Model model){
+        AccountEntity acco =new AccountEntity();
+        model.addAttribute("acc", acco);
         return "registerh";
     }
+
+
     //@ResponseBody
     @RequestMapping(path = "/register" ,method = RequestMethod.POST )
-    public String registerAccount(Model model,
-//                                  @RequestParam(value = "acc")String acc,
-//                                  @RequestParam(value = "pwd")String pwd,
-//                                  @RequestParam(value = "email")String email,
-                                  @ModelAttribute(value = "accountEntity")AccountEntity accountEntity,
-                                  HttpServletRequest request){
-//        AccountEntity a = new AccountEntity();
-//        a.setAccountAcc(acc);
-//        a.setAccountPwd(pwd);
-//        a.setAccountEmail(email);
+    public String registerAccount(Model model,AccountEntity account,HttpServletRequest request){
         try {
-            AccountEntity reaccountEntity = registerService.registerAccount(accountEntity,request);
+            AccountEntity reaccountEntity = registerService.registerAccount(account,request);
             model.addAttribute("title","success!" );
             model.addAttribute("message", "欢迎你！"+reaccountEntity.getAccountAcc());
             return "index";
@@ -48,7 +44,6 @@ public class AccountController {
         }
 
     }
-
 
     @RequestMapping(value = "/login")
     public String login (@RequestParam(value = "acc")String acc,
