@@ -11,13 +11,14 @@ import java.util.Objects;
 @GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class AccountEntity {
     private String accountId;
-    private Integer accountUserId;
+    private String accountUserId;
     private String accountAcc;
     private String accountPwd;
     private String accountEmail;
     private String accountStatus;
     private String accountLastIp;
     private Timestamp accountLastlogintime;
+    private String accountCreateip;
     private Timestamp accountCreatetime;
     private Timestamp accountUpdatetime;
 
@@ -34,11 +35,11 @@ public class AccountEntity {
 
     @Basic
     @Column(name = "account_user_id")
-    public Integer getAccountUserId() {
+    public String getAccountUserId() {
         return accountUserId;
     }
 
-    public void setAccountUserId(Integer accountUserId) {
+    public void setAccountUserId(String accountUserId) {
         this.accountUserId = accountUserId;
     }
 
@@ -103,6 +104,16 @@ public class AccountEntity {
     }
 
     @Basic
+    @Column(name = "account_createip")
+    public String getAccountCreateip() {
+        return accountCreateip;
+    }
+
+    public void setAccountCreateip(String accountCreateip) {
+        this.accountCreateip = accountCreateip;
+    }
+
+    @Basic
     @Column(name = "account_createtime")
     public Timestamp getAccountCreatetime() {
         return accountCreatetime;
@@ -127,7 +138,7 @@ public class AccountEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccountEntity that = (AccountEntity) o;
-        return accountId == that.accountId &&
+        return Objects.equals(accountId, that.accountId) &&
                 Objects.equals(accountUserId, that.accountUserId) &&
                 Objects.equals(accountAcc, that.accountAcc) &&
                 Objects.equals(accountPwd, that.accountPwd) &&
@@ -135,12 +146,13 @@ public class AccountEntity {
                 Objects.equals(accountStatus, that.accountStatus) &&
                 Objects.equals(accountLastIp, that.accountLastIp) &&
                 Objects.equals(accountLastlogintime, that.accountLastlogintime) &&
+                Objects.equals(accountCreateip, that.accountCreateip) &&
                 Objects.equals(accountCreatetime, that.accountCreatetime) &&
                 Objects.equals(accountUpdatetime, that.accountUpdatetime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountId, accountUserId, accountAcc, accountPwd, accountEmail, accountStatus, accountLastIp, accountLastlogintime, accountCreatetime, accountUpdatetime);
+        return Objects.hash(accountId, accountUserId, accountAcc, accountPwd, accountEmail, accountStatus, accountLastIp, accountLastlogintime, accountCreateip, accountCreatetime, accountUpdatetime);
     }
 }

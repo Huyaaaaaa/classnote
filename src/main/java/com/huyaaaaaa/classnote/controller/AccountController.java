@@ -1,20 +1,14 @@
 package com.huyaaaaaa.classnote.controller;
 
-import com.huyaaaaaa.classnote.dao.AccountJPA;
 import com.huyaaaaaa.classnote.entity.AccountEntity;
-import com.huyaaaaaa.classnote.entity.UserEntity;
 import com.huyaaaaaa.classnote.service.LoginService;
 import com.huyaaaaaa.classnote.service.RegisterService;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Type;
 
 @Controller
 public class AccountController {
@@ -25,15 +19,23 @@ public class AccountController {
 
     @RequestMapping(path = "/test",method = RequestMethod.GET)
     public String test(Model model){
-        AccountEntity acco =new AccountEntity();
-        model.addAttribute("acc", acco);
+        AccountEntity account =new AccountEntity();
+        model.addAttribute("acc", account);
         return "registerh";
     }
 
 
-    //@ResponseBody
+    //注册
     @RequestMapping(path = "/register" ,method = RequestMethod.POST )
     public String registerAccount(Model model,AccountEntity account,HttpServletRequest request){
+        if (null!=account.getAccountAcc() && ""!=account.getAccountAcc()){
+            if(null!=account.getAccountPwd() &&""!=account.getAccountPwd()) {
+
+
+            }
+        }
+
+
         try {
             AccountEntity reaccountEntity = registerService.registerAccount(account,request);
             model.addAttribute("title","success!" );

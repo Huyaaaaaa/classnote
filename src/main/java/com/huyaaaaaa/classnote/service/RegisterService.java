@@ -27,11 +27,21 @@ public class RegisterService {
 
         System.out.println("header信息为");
         String ip = GetIPUtil.GetIp(request);
+        if (null!=ip && ip!="0:0:0:0:0:0:0:1"){
+            a.setAccountCreateip(ip);
+        }
         System.out.println("现在的ip为"+ip);
-        a.setAccountLastIp(ip);
+
         UserEntity userEntity = new UserEntity();
+        //需要保存后才能生成uuid所以需要保存一个空的user角色
+        //然后将返回值即id填入account
         UserEntity save = userJPA.save(userEntity);
-        System.out.println(save.getUserId());
-        return null;
+        String userId = save.getUserId();
+        System.out.println("现在的userID为："+userId);
+       //将关联的userid写入账户
+        a.setAccountUserId(userId);
+        //保存账户
+        accountJPA.save(a);
+        return a;
     }
 }

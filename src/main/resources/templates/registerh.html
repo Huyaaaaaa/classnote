@@ -6,24 +6,28 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <title>注册</title>
+
 </head>
 <body class="is-loading">
-    <div>
-        <form method="post" action="#">
+<div>  <h1>注册</h1> </div>
+<div id="main">
+        <form method="post" action="/register">
+            <h1 align="center">注册</h1>
             <div class="field">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" />
+                <label for="accountAcc">Account</label>
+                <input type="text" name="accountAcc" id="accountAcc" onblur="jiance()"/>
             </div>
             <div class="field">
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email" />
+                <label for="accountPwd">Password</label>
+                <input type="password" name="accountPwd" id="accountPwd" />
             </div>
             <div class="field">
-                <label for="message">Message</label>
-                <textarea name="message" id="message" rows="3"></textarea>
+                <label for="accountEmail">Email</label>
+                <input type="text" name="accountEmail" id="accountEmail"/>
+                <!--<textarea name="accountEmail" id="accountEmail" rows="3"></textarea>-->
             </div>
             <ul class="actions">
-                <li><input type="submit" value="Send Message" /></li>
+                <li><input type="submit" value="注册" /></li>
             </ul>
         </form>
     <!--<form action="#" th:action="@{/register}" th:object="${acc}" method="post">-->
@@ -32,19 +36,37 @@
         <!--<input type="text" value="" th:field="*{accountEmail}" />-->
         <!--<input type="submit" />-->
     <!--</form>-->
-        <form action="/register" method="post">
-            <input type="text" name="accountAcc">
-            <input type="password" name="accountPwd">
-            <input type="text" name="accountEmail">
-            <input type="submit" value="登陆">
-        </form>
+
+
+    <!--<form action="/register" method="post">-->
+            <!--<input type="text" name="accountAcc">-->
+            <!--<input type="password" name="accountPwd">-->
+            <!--<input type="text" name="accountEmail">-->
+            <!--<input type="submit" value="登陆">-->
+        <!--</form>-->
     </div>
-    <h1>123123123</h1>
+    <h1>1233211234567</h1>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrollex.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
     <script src="assets/js/skel.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+<script>
+    var accountAcc=document.getElementById("accountAcc").value;
+    var xhr=createXmlHttp();
+    xhr.onreadystatechange=function(){
+        // 0 未连接 1 打开连接 2 发送请求 3 交互 4 完成交互,接手响应
+        if (xhr.readyState==4){
+            if(xhr.status==200){//表示处理结果ok
+                document.getElementById("span1").innerHTML=xhr.responseText;
+            }
+        }
+    }
+    //3.打开链接
+    xhr.open("GET","${pageContext.request.contextPath}/user_findByName.action?time="+new Date().getTime()+"&username=" +username,true);
+    //4.发送
+    xhr.send(null);
+</script>
 </body>
 </html>
